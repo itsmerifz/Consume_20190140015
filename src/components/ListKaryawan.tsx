@@ -6,12 +6,11 @@ import karyawanService from "../service/service.ts";
 
 export default function ListKaryawan() {
   const [karyawan, setKaryawan] = useState([]);
-  const [modalShow, setModalShow] = useState(false);
 
   const init = () => {
     karyawanService.getAll()
       .then(res => {
-        console.log(res.data);
+        console.log(res);
         setKaryawan(res.data);
       })
       .catch(err => {
@@ -25,17 +24,18 @@ export default function ListKaryawan() {
 
   const handleDelete = (id) => {
     let hasil = confirm("Apakah anda yakin akan menghapus data ini?")
-    console.log(hasil);
-    if (hasil) {
-    karyawanService.remove(id)
-      .then(res => {
-        console.log(res.data);
-        init();
-      })
-      .catch(err => {
-        console.log(err);
-      })
+    if (!hasil) {
+      console.log(hasil);
+      return;
     }
+    karyawanService.remove(id)
+        .then(res => {
+          console.log(res.data);
+          init();
+        })
+        .catch(err => {
+          console.log(err);
+        })
   }
   return (
     <div className="container">
@@ -59,12 +59,12 @@ export default function ListKaryawan() {
               karyawan.map((item) => {
                 return (
                   <tr key={item.id}>
-                    <td>{}</td>
+                    <td>{item.index }</td>
                     <td>{item.nama}</td>
                     <td>{item.alamat}</td>
                     <td>{item.departemen}</td>
                     <td>{item.thnKerja}</td>
-                    <td>{item.masaKerja}</td>
+                    <td>{parseInt(new Date().getFullYear().toString()) - parseInt(item.thnKerja)} Tahun</td>
                     <td>
                       <div className="d-flex justify-content-center">
                         <Link className="btn btn-info m" to={`/edit/${item.id}`}>Edit</Link>

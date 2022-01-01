@@ -20,4 +20,5 @@ const remove = id => {
   return httpClient.delete(`/karyawan/${id}`);
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default { getAll, create, get, update, remove };

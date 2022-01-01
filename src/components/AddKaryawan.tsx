@@ -8,7 +8,7 @@ export default function AddKaryawan() {
   const [alamat, setAlamat] = useState("");
   const [departemen, setDepartemen] = useState("");
   const [thnKerja, setThnKerja] = useState("");
-  const [masaKerja, setMasaKerja] = useState(0);
+  const [masaKerja, setMasaKerja] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -40,6 +40,7 @@ export default function AddKaryawan() {
   }
 
   useEffect(() => {
+    
     if (id) {
       service.get(id)
         .then(res => {
@@ -48,7 +49,7 @@ export default function AddKaryawan() {
           setAlamat(res.data.alamat);
           setDepartemen(res.data.departemen);
           setThnKerja(res.data.thnKerja);
-          setMasaKerja(Date.prototype.getFullYear() - res.data.thnKerja);
+          setMasaKerja(res.data.masaKerja);
         })
         .catch(err => {
           console.log(err);
