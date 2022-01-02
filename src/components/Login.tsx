@@ -13,6 +13,7 @@ const Login = () => {
     console.log(res.profileObj);
     localStorage.setItem("nama", res.profileObj.name);
     localStorage.setItem("googleId", res.profileObj.googleId);
+    localStorage.setItem("foto", res.profileObj.imageUrl);
     setSignInStatus(true);
   }
 
