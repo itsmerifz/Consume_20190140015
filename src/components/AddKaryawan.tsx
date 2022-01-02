@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import service from "../service/service.ts";
+import Nav from "./Navbar.tsx";
 
 
 export default function AddKaryawan() {
@@ -40,7 +41,7 @@ export default function AddKaryawan() {
   }
 
   useEffect(() => {
-    
+
     if (id) {
       service.get(id)
         .then(res => {
@@ -58,62 +59,65 @@ export default function AddKaryawan() {
   }, []);
 
   return (
-    <div className="container">
-      <h3>Tambah Karyawan</h3>
-      <hr />
-      <form>
-        <div className="form-group my-3">
-          <label htmlFor="nama">Nama</label>
-          <input 
-            type="text"
-            className="form-control col-8"
-            id="nama"
-            value={nama}
-            onChange={(e) => setNama(e.target.value)}
-            placeholder="Masukkan Nama"
-          />
-        </div>
-        <div className="form-group my-3">
-          <label htmlFor="alamat">Alamat</label>
-          <input 
-            type="text"
-            className="form-control col-8"
-            id="alamat"
-            value={alamat}
-            onChange={(e) => setAlamat(e.target.value)}
-            placeholder="Masukkan Alamat"
-          />
-        </div>
-        <div className="form-group my-3">
-          <label htmlFor="departemen">Departemen</label>
-          <input 
-            type="text"
-            className="form-control col-8"
-            id="departemen"
-            value={departemen}
-            onChange={(e) => setDepartemen(e.target.value)}
-            placeholder="Masukkan Departemen"
-          />
-        </div>
-        <div className="form-group my-3">
-          <label htmlFor="tahun">Tahun Kerja</label>
-          <input 
-            type="text"
-            className="form-control col-8"
-            id="tahun"
-            value={thnKerja}
-            onChange={(e) => {
-              setThnKerja(e.target.value)
-            }}
-            placeholder="Masukkan Tahun Kerja"
-          />
-        </div>
-        <div>
-          <button onClick={e => simpanKaryawan(e)} className="btn btn-warning">Simpan</button>
-        </div>
-      </form>
-      <hr />
-      <Link to="/">Kembali ke halaman utama</Link>
-    </div>
+    <>
+      <Nav />
+      <div className="container my-4">
+        <h3>Tambah Karyawan</h3>
+        <hr />
+        <form>
+          <div className="form-group my-3">
+            <label htmlFor="nama">Nama</label>
+            <input
+              type="text"
+              className="form-control col-8"
+              id="nama"
+              value={nama}
+              onChange={(e) => setNama(e.target.value)}
+              placeholder="Masukkan Nama"
+            />
+          </div>
+          <div className="form-group my-3">
+            <label htmlFor="alamat">Alamat</label>
+            <input
+              type="text"
+              className="form-control col-8"
+              id="alamat"
+              value={alamat}
+              onChange={(e) => setAlamat(e.target.value)}
+              placeholder="Masukkan Alamat"
+            />
+          </div>
+          <div className="form-group my-3">
+            <label htmlFor="departemen">Departemen</label>
+            <input
+              type="text"
+              className="form-control col-8"
+              id="departemen"
+              value={departemen}
+              onChange={(e) => setDepartemen(e.target.value)}
+              placeholder="Masukkan Departemen"
+            />
+          </div>
+          <div className="form-group my-3">
+            <label htmlFor="tahun">Tahun Kerja</label>
+            <input
+              type="text"
+              className="form-control col-8"
+              id="tahun"
+              value={thnKerja}
+              onChange={(e) => {
+                setThnKerja(e.target.value)
+              }}
+              placeholder="Masukkan Tahun Kerja"
+            />
+          </div>
+          <div>
+            <button onClick={e => simpanKaryawan(e)} className="btn btn-warning">Simpan</button>
+          </div>
+        </form>
+        <hr />
+        <Link to="/list">Kembali ke halaman utama</Link>
+      </div>
+    </>
   )
 }
