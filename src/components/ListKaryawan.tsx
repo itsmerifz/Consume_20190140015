@@ -23,11 +23,6 @@ export default function ListKaryawan() {
   }, []);
 
   const handleDelete = (id) => {
-    let hasil = confirm("Apakah anda yakin akan menghapus data ini?")
-    if (!hasil) {
-      console.log(hasil);
-      return;
-    }
     karyawanService.remove(id)
         .then(res => {
           console.log(res.data);
@@ -70,7 +65,9 @@ export default function ListKaryawan() {
                         <Link className="btn btn-info m" to={`/edit/${item.id}`}>Edit</Link>
                         <button className="btn btn-danger ms-2" onClick={
                           () => {
-                            handleDelete(item.id);
+                            if(window.confirm('Apakah anda yakin akan menghapus data ini?') === true){
+                              handleDelete(item.id)
+                            }
                           }
                         }>Hapus</button>
                       </div>
