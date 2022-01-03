@@ -5,7 +5,9 @@ import Logout from "./Logout.tsx";
 export default class Nav extends React.Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-primary h-100 p-3">
+      <nav className="navbar navbar-expand-lg navbar-dark h-100 p-3" style={{
+        backgroundColor: "#2C3034",
+      }}>
         <div className="container-fluid">
           <span className="fw-bold fs-3">WS Consume</span>
           <div className="collapse navbar-collapse" id="navbar">

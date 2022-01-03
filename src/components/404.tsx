@@ -8,7 +8,7 @@ export default function error404() {
           fontSize: '100px',
         }}>404</h1>
         <p className="fs-2">Nyari apa bro? halamannya gaada, balik sana.</p>
-        <Link to='/' className="fs-4 text-decoration-none">
+        <Link to='/' className="fs-4 text-white">
           <p>Kembali ke halaman utama</p>
         </Link>
       </div>

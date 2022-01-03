@@ -42,13 +42,13 @@ export default function ListKaryawan() {
       {
         localStorage.getItem("googleId") !== null ?
 
-          <>
+          <div className="bg-dark">
             <Navbar />
-            <div className="container my-4">
+            <div className="container my-4 h-100">
               <h3>List Karyawan</h3>
               <div>
-                <Link to="/tambah" className="btn btn-success mb-3">Tambah Karyawan</Link>
-                <table className="table table-striped text-center">
+                <Link to="/tambah" className="btn btn-outline-success mb-3">Tambah Karyawan</Link>
+                <table className="table table-dark table-striped text-center">
                   <thead className="thead-primary">
                     <tr>
                       <th>No.</th>
@@ -73,8 +73,8 @@ export default function ListKaryawan() {
                             <td>{parseInt(new Date().getFullYear().toString()) - parseInt(item.thnKerja)} Tahun</td>
                             <td>
                               <div className="d-flex justify-content-center">
-                                <Link className="btn btn-info m" to={`/edit/${item.id}`}>Edit</Link>
-                                <button className="btn btn-danger ms-2" onClick={
+                                <Link className="btn btn-outline-info" to={`/edit/${item.id}`}>Edit</Link>
+                                <button className="btn btn-outline-danger ms-2" onClick={
                                   () => {
                                     if (window.confirm('Apakah anda yakin akan menghapus data ini?') === true) {
                                       handleDelete(item.id)
@@ -91,7 +91,7 @@ export default function ListKaryawan() {
                 </table>
               </div>
             </div>
-          </>
+          </div>
 
           :
           

@@ -31,8 +31,8 @@ const Login = () => {
       :
       
       <div className="container">
-        <div className="row my-5">
-          <div className="col-12 text-center">
+        <div className="vh-100 d-flex justify-content-center align-items-center text-center fw-normal">
+          <div>
             <h3>Login Page</h3>
             <p className="fw-normal">Selamat datang di web data karyawan <br /> silahkan login terlebih dahulu</p>
             
@@ -42,6 +42,12 @@ const Login = () => {
               onFailure={gResFailure}
               cookiePolicy={'single_host_origin'}
               isSignedIn={true} 
+              render={renderProps => (
+                <button onClick={renderProps.onClick} className="btn btn-outline-light fw-bold" style={{
+                  width: "175px",
+                  height: "50px"
+                }}>Login with Google</button>
+              )}
             />
           </div>
         </div>

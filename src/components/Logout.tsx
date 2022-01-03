@@ -12,6 +12,7 @@ export default function Logout() {
     nav("/");
     localStorage.removeItem("googleId");
     localStorage.removeItem("nama");
+    localStorage.removeItem("foto");
   }
 
   return (
@@ -19,7 +20,10 @@ export default function Logout() {
       <GoogleLogout
         clientId={clientId}
         render={renderProps => (
-          <button onClick={renderProps.onClick} className="btn btn-light fw-bold">Log Out</button>
+          <button onClick={renderProps.onClick} className="btn btn-outline-light fw-bold" style={{
+            width: "100px",
+            height: "50px"
+          }}>Log Out</button>
         )}
         buttonText="Logout"
         onLogoutSuccess={onSuccess}>
