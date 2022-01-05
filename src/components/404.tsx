@@ -6,9 +6,9 @@ export default function error404() {
       <div>
         <h1 style={{
           fontSize: '100px',
-        }}>404</h1>
+        }}>404 :(</h1>
         <p className="fs-2">Nyari apa bro? halamannya gaada, balik sana.</p>
-        <Link to='/' className="fs-4 text-white">
+        <Link to='/list' className="fs-4 text-white">
           <p>Kembali ke halaman utama</p>
         </Link>
       </div>

@@ -1,4 +1,3 @@
-import DataTable from "react-data-table-component";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import karyawanService from "../service/service.ts";
@@ -12,7 +11,6 @@ export default function Tabel() {
     karyawanService.getAll()
       .then(res => {
         setKaryawan(res.data);
-        console.log(karyawan);
       })
       .catch(err => {
         console.log(err);
@@ -21,35 +19,15 @@ export default function Tabel() {
       karyawanService.search(search)
       .then(res => {
         setKaryawan(res.data);
-        console.log(karyawan);
       })
       .catch(err => {
         console.log(err);
       })
   }
 
-  // const handleSearch = () => {
-  //   console.log(search);
-
-  //   karyawanService.getByNama(search)
-  //     .then(res => {
-  //       setKaryawan(res.data);
-  //       console.log(karyawan);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     })
-  //   // if (search !== '') {
-
-  //   // }
-
-  //   init()
-  // }
-
   const handleDelete = (id) => {
     karyawanService.remove(id)
       .then(res => {
-        console.log(res.data);
         init();
       })
       .catch(err => {
@@ -120,7 +98,7 @@ export default function Tabel() {
             })
             :
             <tr>
-              <td colSpan="7">
+              <td colSpan={7}>
                 <div className="d-flex justify-content-center">
                   <div className="text-white" role="status">
                     <span className="sr-only">Tidak ada data!</span>

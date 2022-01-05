@@ -10,6 +10,7 @@ export default function AddKaryawan() {
   const [departemen, setDepartemen] = useState("");
   const [thnKerja, setThnKerja] = useState("");
   const [masaKerja, setMasaKerja] = useState(null);
+  const [tempNama, setTempNama] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -22,7 +23,6 @@ export default function AddKaryawan() {
       service.update(karyawan)
         .then(res => {
           alert("Data berhasil diupdate");
-          console.log(res.data);
           navigate("/list");
         })
         .catch(err => {
@@ -33,7 +33,6 @@ export default function AddKaryawan() {
       service.create(karyawan)
         .then(res => {
           alert("Data berhasil disimpan");
-          console.log(res.data);
           navigate("/list");
         })
         .catch(err => {
@@ -47,12 +46,12 @@ export default function AddKaryawan() {
     if (id) {
       service.get(id)
         .then(res => {
-          console.log(res.data);
           setNama(res.data.nama);
           setAlamat(res.data.alamat);
           setDepartemen(res.data.departemen);
           setThnKerja(res.data.thnKerja);
           setMasaKerja(res.data.masaKerja);
+          setTempNama(res.data.nama);
         })
         .catch(err => {
           console.log(err);
@@ -67,8 +66,19 @@ export default function AddKaryawan() {
           <>
             <Nav />
             <div className="container my-4">
-              <h3>Tambah Karyawan</h3>
+              <h3>{
+                id ?
+                  "Edit Karyawan"
+                  :
+                  "Tambah Karyawan"
+                }</h3>
               <hr />
+              {
+                id ?
+                <p><Link to={'/list'} className="text-white text-decoration-none">Home</Link> / Edit Karyawan /{` ${tempNama}`}</p>
+                :
+                <p><Link to={'/list'} className="text-white text-decoration-none">Home</Link> / Tambah Karyawan</p>
+              }
               <form className="bg-dark text-white">
                 <div className="row row-cols-2">
                   <div className="form-group my-3">
