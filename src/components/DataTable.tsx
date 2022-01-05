@@ -5,8 +5,10 @@ import karyawanService from "../service/service.ts";
 
 export default function Tabel() {
   const [karyawan, setKaryawan] = useState([]);
+  const [search, setSearch] = useState('');
 
   const init = () => {
+    search === '' ?
     karyawanService.getAll()
       .then(res => {
         setKaryawan(res.data);
@@ -15,7 +17,34 @@ export default function Tabel() {
       .catch(err => {
         console.log(err);
       })
+      :
+      karyawanService.search(search)
+      .then(res => {
+        setKaryawan(res.data);
+        console.log(karyawan);
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
+
+  // const handleSearch = () => {
+  //   console.log(search);
+
+  //   karyawanService.getByNama(search)
+  //     .then(res => {
+  //       setKaryawan(res.data);
+  //       console.log(karyawan);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     })
+  //   // if (search !== '') {
+
+  //   // }
+
+  //   init()
+  // }
 
   const handleDelete = (id) => {
     karyawanService.remove(id)
@@ -35,8 +64,18 @@ export default function Tabel() {
   return (
     <div>
       <div className="row">
-        <div className="col-3 ms-auto mb-3">
-        <input type="text" name="" id="" placeholder="Cari data..."  className="bg-dark text-white form-control"/>
+        <div className="col-4 ms-auto">
+          <form className="mb-3">
+            <div className="form-group d-flex">
+              <input type="text" name="" id="" placeholder="Cari data..." className="bg-dark text-white form-control me-3" onChange={e => {
+                setSearch(e.target.value);
+              }} />
+              <button type="button" className="btn btn-outline-primary ml-2" onClick={() => {
+                init();
+              }
+              }>Cari</button>
+            </div>
+          </form>
         </div>
       </div>
       <table className="table table-dark table-striped text-center">
@@ -53,6 +92,8 @@ export default function Tabel() {
         </thead>
         <tbody>
           {
+            karyawan ?
+
             karyawan.map((item, idx) => {
               return (
                 <tr key={item.id}>
@@ -77,6 +118,17 @@ export default function Tabel() {
                 </tr>
               )
             })
+            :
+            <tr>
+              <td colSpan="7">
+                <div className="d-flex justify-content-center">
+                  <div className="text-white" role="status">
+                    <span className="sr-only">Tidak ada data!</span>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
           }
         </tbody>
       </table>

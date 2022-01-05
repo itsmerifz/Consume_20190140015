@@ -4,6 +4,10 @@ const getAll = () => {
   return httpClient.get("/karyawan");
 }
 
+const search = nama => {
+  return httpClient.get(`/karyawan?nama=${nama}`);
+}
+
 const create = data => {
   return httpClient.post("/karyawan", data);
 }
@@ -21,4 +25,4 @@ const remove = id => {
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getAll, create, get, update, remove };
+export default { getAll, create, get, update, remove, search };
