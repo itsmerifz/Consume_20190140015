@@ -114,8 +114,12 @@ export default function AddKaryawan() {
                       id="tahun"
                       value={thnKerja}
                       onChange={(e) => {
-                        setThnKerja(e.target.value)
-                      }}
+                        if(parseInt(e.target.value) > new Date().getFullYear()){
+                          alert("Tahun tidak boleh lebih dari tahun sekarang");
+                        }
+                          setThnKerja(e.target.value)
+                        }
+                      }
                       placeholder="Masukkan Tahun Kerja"
                     />
                   </div>
