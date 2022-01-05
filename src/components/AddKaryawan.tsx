@@ -21,6 +21,7 @@ export default function AddKaryawan() {
       // proses update
       service.update(karyawan)
         .then(res => {
+          alert("Data berhasil diupdate");
           console.log(res.data);
           navigate("/list");
         })
@@ -31,6 +32,7 @@ export default function AddKaryawan() {
       // proses simpan
       service.create(karyawan)
         .then(res => {
+          alert("Data berhasil disimpan");
           console.log(res.data);
           navigate("/list");
         })

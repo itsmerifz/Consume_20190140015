@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import karyawanService from "../service/service.ts";
-import Logout from "./Logout.tsx";
 import Navbar from "./Navbar.tsx";
+import Tabel from "./DataTable.tsx";
 
 export default function ListKaryawan() {
   const [karyawan, setKaryawan] = useState([]);
@@ -48,7 +48,8 @@ export default function ListKaryawan() {
               <h3>List Karyawan</h3>
               <div>
                 <Link to="/tambah" className="btn btn-outline-success mb-3">Tambah Karyawan</Link>
-                <table className="table table-dark table-striped text-center">
+                <Tabel />
+                {/* <table className="table table-dark table-striped text-center">
                   <thead className="thead-primary">
                     <tr>
                       <th>No.</th>
@@ -88,7 +89,7 @@ export default function ListKaryawan() {
                       })
                     }
                   </tbody>
-                </table>
+                </table> */}
               </div>
             </div>
           </div>
